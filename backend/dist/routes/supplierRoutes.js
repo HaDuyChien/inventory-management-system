@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const supplierController_1 = require("../controllers/supplierController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get("/stats", supplierController_1.getSupplierStats);
+router.get("/", supplierController_1.getSuppliers);
+router.get("/:id", supplierController_1.getSupplierById);
+router.get("/:id/orders", supplierController_1.getSupplierOrders);
+router.post("/:id/pay-order/:orderId", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), supplierController_1.paySupplierOrder);
+router.post("/", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), supplierController_1.createSupplier);
+router.put("/:id", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), supplierController_1.updateSupplier);
+router.delete("/:id", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN"), supplierController_1.deleteSupplier);
+exports.default = router;

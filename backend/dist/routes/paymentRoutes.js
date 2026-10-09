@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const paymentController_1 = require("../controllers/paymentController");
+const router = (0, express_1.Router)();
+router.post("/vnpay/create-url", paymentController_1.createVNPayPaymentUrl);
+router.get("/vnpay/return", paymentController_1.verifyVNPayReturn);
+router.post("/vnpay/verify", paymentController_1.verifyVNPayReturn);
+router.get("/vnpay/ipn", paymentController_1.vnpayIPN);
+exports.default = router;

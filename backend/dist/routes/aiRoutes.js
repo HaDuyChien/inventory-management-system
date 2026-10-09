@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const aiController_1 = require("../controllers/aiController");
+const auth_1 = require("../middleware/auth");
+const aiRateLimiter_1 = require("../middleware/aiRateLimiter");
+const router = (0, express_1.Router)();
+router.post("/ask", auth_1.protectAdmin, aiRateLimiter_1.aiRateLimiter, aiController_1.askAI);
+router.get("/snapshot", auth_1.protectAdmin, aiController_1.getWarehouseSnapshotAI);
+router.get("/reorder-advice", auth_1.protectAdmin, aiController_1.getReorderAdviceAI);
+router.post("/generate-description", auth_1.protectAdmin, aiRateLimiter_1.aiRateLimiter, aiController_1.generateDescriptionAI);
+router.get("/sessions", auth_1.protectAdmin, aiController_1.getChatSessions);
+router.post("/sessions", auth_1.protectAdmin, aiController_1.createChatSession);
+router.get("/sessions/:id", auth_1.protectAdmin, aiController_1.getChatSessionById);
+router.post("/sessions/:id/messages", auth_1.protectAdmin, aiRateLimiter_1.aiRateLimiter, aiController_1.sendMessageToSession);
+router.delete("/sessions/:id", auth_1.protectAdmin, aiController_1.deleteChatSession);
+router.patch("/sessions/:id/title", auth_1.protectAdmin, aiController_1.renameChatSession);
+exports.default = router;

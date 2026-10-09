@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authController_1 = require("../controllers/authController");
+const auth_1 = require("../middleware/auth");
+const upload_1 = require("../middleware/upload");
+const router = (0, express_1.Router)();
+router.post("/admin/login", authController_1.loginAdmin);
+router.post("/admin/register", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN"), authController_1.registerAdmin);
+router.get("/admin/me", auth_1.protectAdmin, authController_1.getMeAdmin);
+router.put("/admin/profile", auth_1.protectAdmin, authController_1.updateProfile);
+router.put("/profile", auth_1.protectAdmin, authController_1.updateProfile);
+router.post("/admin/avatar", auth_1.protectAdmin, upload_1.uploadSingleImage, authController_1.uploadAvatar);
+router.post("/customer/login", authController_1.loginCustomer);
+router.post("/customer/register", authController_1.registerCustomer);
+router.get("/customer/me", auth_1.protectCustomer, authController_1.getMeCustomer);
+exports.default = router;

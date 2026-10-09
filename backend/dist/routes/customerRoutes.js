@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const customerController_1 = require("../controllers/customerController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.use(auth_1.protectAdmin);
+router.get("/", customerController_1.getCustomers);
+router.get("/:id", customerController_1.getCustomerById);
+router.post("/", (0, auth_1.restrictTo)("ADMIN"), customerController_1.createCustomer);
+router.put("/:id", (0, auth_1.restrictTo)("ADMIN"), customerController_1.updateCustomer);
+router.delete("/:id", (0, auth_1.restrictTo)("ADMIN"), customerController_1.deleteCustomer);
+exports.default = router;

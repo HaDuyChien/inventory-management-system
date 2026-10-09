@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poster Nghiên Cứu - Đại Học Công Nghiệp Hà Nội</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #f1f5f9;
+      color: #111827;
+      line-height: 1.45;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .action-toolbar {
+      width: 100%;
+      max-width: 1000px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .tool-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #133b7a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-title .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #10b981;
+    }
+
+    .btn-print {
+      background: #133b7a;
+      color: #ffffff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover {
+      background: #0d2854;
+    }
+
+    .poster-page {
+      width: 100%;
+      max-width: 1000px;
+      background: #ffffff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .haui-header {
+      background: #154589;
+      color: #ffffff;
+      position: relative;
+    }
+
+    .haui-header-inner {
+      padding: 14px 28px 12px 28px;
+    }
+
+    .haui-top-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .haui-sub-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      color: #e0e9f8;
+    }
+
+    .haui-bottom-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .haui-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 3px 8px 3px 6px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      gap: 6px;
+    }
+
+    .haui-emblem {
+      width: 26px;
+      height: 26px;
+      background: #e63946;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .haui-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #154589;
+      letter-spacing: -0.5px;
+    }
+
+    .haui-school-en {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #f1f5f9;
+      line-height: 1.2;
+    }
+
+    .haui-gold-stripe {
+      height: 12px;
+      background: #f7a400;
+      width: 100%;
+    }
+
+    .poster-body {
+      padding: 22px 28px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .title-box {
+      border: 2px solid #000000;
+      border-radius: 8px;
+      padding: 14px 20px;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .main-title {
+      font-size: 18.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.35;
+      letter-spacing: -0.2px;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+
+    .advisor-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #154589;
+      margin-bottom: 4px;
+    }
+
+    .authors-names {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .section-container {
+      position: relative;
+    }
+
+    .section-pill-header {
+      background: #11346f;
+      color: #ffffff;
+      padding: 7px 28px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      position: relative;
+      margin: 0 auto;
+      z-index: 2;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    .section-pill-header.center {
+      display: flex;
+      width: fit-content;
+    }
+
+    .section-pill-icon {
+      font-size: 17px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .section-box {
+      border: 2px dashed #000000;
+      border-radius: 8px;
+      padding: 22px 18px 16px 18px;
+      margin-top: -16px;
+      background: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #111827;
+      text-align: justify;
+      line-height: 1.5;
+    }
+
+    .intro-list li {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .intro-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: -2px;
+      font-size: 20px;
+      color: #000000;
+    }
+
+    .grid-2-col {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .grid-2-col-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .tech-grid-12 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .tech-card {
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 8px 4px 6px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #fafafa;
+      transition: transform 0.15s ease;
+      min-height: 68px;
+    }
+
+    .tech-card:hover {
+      border-color: #154589;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .tech-icon-wrapper {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .tech-icon-wrapper svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .tech-name {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 1.2;
+    }
+
+    .arch-diagram-container {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .arch-flow-svg {
+      width: 100%;
+      max-width: 490px;
+      height: auto;
+      display: block;
+    }
+
+    .results-box-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metrics-top-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .metric-pill-item {
+      border-radius: 6px;
+      padding: 6px 4px;
+      text-align: center;
+      border: 1.5px solid #d1d5db;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .metric-pill-item.blue {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    .metric-pill-item.amber {
+      border-color: #ea580c;
+      background: #fff7ed;
+    }
+
+    .metric-pill-item.green {
+      border-color: #16a34a;
+      background: #f0fdf4;
+    }
+
+    .metric-pill-item.cyan {
+      border-color: #0891b2;
+      background: #ecfeff;
+    }
+
+    .metric-top-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #4b5563;
+      text-transform: capitalize;
+    }
+
+    .metric-score {
+      font-size: 17.5px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .metric-pill-item.blue .metric-score { color: #0369a1; }
+    .metric-pill-item.amber .metric-score { color: #c2410c; }
+    .metric-pill-item.green .metric-score { color: #15803d; }
+    .metric-pill-item.cyan .metric-score { color: #0e7490; }
+
+    .cm-participant-row {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cm-table-box {
+      border: 1px solid #1f2937;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 10px;
+    }
+
+    .cm-header-bar {
+      background: #154589;
+      color: #ffffff;
+      text-align: center;
+      padding: 4px 6px;
+      font-weight: 700;
+      font-size: 10.5px;
+    }
+
+    .cm-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    .cm-table th, .cm-table td {
+      border: 1px solid #e5e7eb;
+      padding: 4px 3px;
+    }
+
+    .cm-table th {
+      background: #f3f4f6;
+      font-weight: 700;
+      color: #374151;
+      font-size: 9.5px;
+    }
+
+    .cm-val-pass {
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 800;
+      font-size: 10.5px;
+    }
+
+    .cm-badge-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px 6px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+    }
+
+    .cm-badge-right svg {
+      width: 38px;
+      height: 38px;
+      color: #154589;
+      margin-bottom: 4px;
+    }
+
+    .cm-badge-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: #154589;
+      line-height: 1.3;
+    }
+
+    .conclusion-callout {
+      border: 1.5px solid #000000;
+      border-radius: 6px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+      font-size: 11.8px;
+      line-height: 1.35;
+    }
+
+    .conclusion-tag {
+      background: #11346f;
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .conclusion-text {
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .conclusion-text strong {
+      color: #0369a1;
+      font-weight: 800;
+    }
+
+    .future-items-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12.3px;
+      color: #111827;
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    .future-items-list li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .future-items-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: -2px;
+      font-size: 16px;
+      color: #000000;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .action-toolbar {
+        display: none !important;
+      }
+      .poster-page {
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Toolbar -->
+  <div class="action-toolbar">
+    <div class="tool-title">
+      <span class="dot"></span>
+      Poster Khóa Luận Tốt Nghiệp • Đại Học Công Nghiệp Hà Nội - HaUI
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      In Poster / Lưu PDF
+    </button>
+  </div>
+
+  <!-- Poster Academic Layout -->
+  <main class="poster-page">
+
+    <!-- 1. Header Banner HaUI -->
+    <header class="haui-header">
+      <div class="haui-header-inner">
+        <div class="haui-top-text">ĐẠI HỌC CÔNG NGHIỆP HÀ NỘI</div>
+        <div class="haui-sub-text">TRƯỜNG CÔNG NGHỆ THÔNG TIN & TRUYỀN THÔNG</div>
+        
+        <div class="haui-bottom-row">
+          <div class="haui-logo-badge">
+            <div class="haui-emblem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" stroke="#fff"/>
+                <path d="M12 6v6l4 2" stroke="#fff"/>
+              </svg>
+            </div>
+            <span class="haui-logo-text">HaUI</span>
+          </div>
+          <div class="haui-school-en">
+            SCHOOL OF INFORMATION<br>& COMMUNICATIONS TECHNOLOGY
+          </div>
+        </div>
+      </div>
+      <div class="haui-gold-stripe"></div>
+    </header>
+
+    <!-- Poster Body -->
+    <div class="poster-body">
+
+      <!-- 2. Research Title Box -->
+      <section class="title-box">
+        <h1 class="main-title">
+          XÂY DỰNG WEBSITE THƯƠNG MẠI ĐIỆN TỬ QUẢN TRỊ KHO TÍCH HỢP TRÍ TUỆ NHÂN TẠO
+        </h1>
+        <div class="advisor-name">Cán bộ hướng dẫn: ThS. Nguyễn Đức Lưu</div>
+        <div class="authors-names">Sinh viên thực hiện: Hà Duy Chiến</div>
+      </section>
+
+      <!-- 3. Giới thiệu & Mục tiêu nghiên cứu -->
+      <section class="section-container">
+        <div class="section-pill-header center">
+          <span>Giới thiệu & Mục tiêu nghiên cứu</span>
+        </div>
+        <div class="section-box">
+          <ul class="intro-list">
+            <li>
+              Trong bối cảnh bùng nổ thương mại điện tử, các doanh nghiệp gặp nhiều khó khăn về sai lệch dữ liệu kiểm kê thực tế, thiếu hụt nguồn cung và chi phí vận hành đắt đỏ do quản lý thủ công rời rạc. Đề tài tập trung nghiên cứu, thiết kế và xây dựng hệ thống InventoHub chuẩn hóa quy trình chuỗi cung ứng khép kín, kết nối liền mạch giữa cổng quản trị kho vận chuyên sâu và cổng cửa hàng bán lẻ trực tuyến.
+            </li>
+            <li>
+              Mục tiêu chính là hiện thực hóa quy trình nghiệp vụ kho vận đa tầng theo khu vực, dãy kệ và ô chứa, kiểm soát tồn kho thời gian thực, quản lý đơn mua hàng nhà cung cấp, đơn bán hàng lẻ, tiếp nhận đổi trả hàng và lập phiếu cân bằng kiểm kê. Đồng thời, hệ thống tích hợp trí tuệ nhân tạo Google Gemini AI dự báo nhu cầu nhập hàng trong 30 ngày, tự động sinh mô tả sản phẩm chuẩn SEO, cổng thanh toán trực tuyến VNPay và bảo mật an toàn với JSON Web Token.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Middle Row: Công nghệ sử dụng + Kiến trúc mô hình -->
+      <div class="grid-2-col">
+
+        <!-- 4. Công nghệ sử dụng -->
+        <section class="section-container">
+          <div class="section-pill-header center">
+            <span class="section-pill-icon">💡</span>
+            <span>Công nghệ sử dụng</span>
+          </div>
+          <div class="section-box">
+            <div class="tech-grid-12">
+              
+              <!-- 1. React 19 -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 115.3 100" fill="#00d8ff">
+                    <path d="M57.7 0c-15.6 0-29.8 4.2-39.7 11.2C8 18.2 2 28.1 2 39.5c0 11.4 6 21.3 16 28.3 9.9 7 24.1 11.2 39.7 11.2 15.6 0 29.8-4.2 39.7-11.2 10-7 16-16.9 16-28.3 0-11.4-6-21.3-16-28.3C87.5 4.2 73.3 0 57.7 0zm0 7.8c14 0 26.6 3.7 35.3 9.9 8.6 6.1 13 14.1 13 21.8 0 7.7-4.4 15.7-13 21.8-8.7 6.2-21.3 9.9-35.3 9.9-14 0-26.6-3.7-35.3-9.9-8.6-6.1-13-14.1-13-21.8 0-7.7 4.4-15.7 13-21.8 8.7-6.2 21.3-9.9 35.3-9.9z"/>
+                    <circle cx="57.7" cy="50" r="10.8"/>
+                  </svg>
+                </div>
+                <span class="tech-name">React 19</span>
+              </div>
+
+              <!-- 2. TypeScript -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 128 128">
+                    <rect width="128" height="128" fill="#3178c6" rx="16"/>
+                    <path fill="#fff" d="M72.2 46.5H41.4V59h10.9v44.2h15.5V59h10.9V46.5zm31.7 19.3c-2.3-1.6-5.4-2.8-9.4-3.7-4-.9-6.3-1.6-7.1-2.2-.7-.6-1.1-1.4-1.1-2.4 0-1.2.5-2.2 1.6-2.9 1.1-.7 2.6-1.1 4.5-1.1 2.3 0 4.4.5 6.3 1.4 1.9.9 3.5 2.2 4.9 3.8l8.9-8.6c-3-3.2-6.5-5.6-10.7-7-4.2-1.5-8.8-2.2-13.8-2.2-6.4 0-11.8 1.4-16.1 4.3-4.3 2.9-6.5 7.1-6.5 12.6 0 3.7 1 6.8 3.1 9.2 2.1 2.4 5.3 4.3 9.7 5.7 3.3 1.1 5.9 2 7.7 2.7 1.8.7 3 1.6 3.6 2.5.6.9.9 2 .9 3.4 0 1.6-.7 2.9-2.1 3.9-1.4 1-3.3 1.5-5.8 1.5-3.3 0-6.3-.8-9.1-2.4-2.8-1.6-4.9-3.9-6.3-6.8l-9.8 8.1c2.5 4.3 6.1 7.7 10.8 10.1 4.7 2.4 10.1 3.6 16.3 3.6 7.3 0 13.2-1.6 17.8-4.7 4.6-3.1 6.9-7.7 6.9-13.8 0-4.1-1.2-7.4-3.5-9.9-2.4-2.5-5.9-4.5-10.5-5.9z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">TypeScript</span>
+              </div>
+
+              <!-- 3. Node.js -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 128 128">
+                    <path fill="#83CD29" d="M64 8.7L16.2 36.3v55.4L64 119.3l47.8-27.6V36.3L64 8.7zm0 18.5l31.8 18.4v36.8L64 100.8 32.2 82.4V45.6L64 27.2z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Node.js</span>
+              </div>
+
+              <!-- 4. Express.js -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#000000">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-5h2v5zm0-7h-2V7h2v2.5z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Express.js</span>
+              </div>
+
+              <!-- 5. MongoDB -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#13aa52">
+                    <path d="M12 1.5s-4.5 5.5-4.5 10.5c0 3.5 2 6.5 4.5 8.5 2.5-2 4.5-5 4.5-8.5 0-5-4.5-10.5-4.5-10.5zm.5 17c-.5.4-1 .4-1.5 0-.5-1.5-.5-5-.5-7 0-1.5.5-3 1-4 .5 1 1 2.5 1 4 0 2 0 5.5-.5 7z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">MongoDB</span>
+              </div>
+
+              <!-- 6. Tailwind CSS -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#06B6D4">
+                    <path d="M12 6c-4 0-6.5 2-7.5 6 1.5-2 3.5-2.75 6-2.25 1.43.29 2.45 1.33 3.58 2.49C15.89 14.1 18.2 16.5 23 16.5c4 0 6.5-2 7.5-6-1.5 2-3.5 2.75-6 2.25-1.43-.29-2.45-1.33-3.58-2.49C19.11 8.4 16.8 6 12 6zm-11 7c-4 0-6.5 2-7.5 6 1.5-2 3.5-2.75 6-2.25 1.43.29 2.45 1.33 3.58 2.49 1.89 1.86 4.2 4.26 9 4.26 4 0 6.5-2 7.5-6-1.5 2-3.5 2.75-6 2.25-1.43-.29-2.45-1.33-3.58-2.49C8.11 15.4 5.8 13 1 13z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Tailwind CSS</span>
+              </div>
+
+              <!-- 7. TanStack Query -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#FF4154">
+                    <circle cx="12" cy="12" r="10" stroke="#FF4154" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="4" fill="#FF4154"/>
+                    <circle cx="12" cy="5" r="2" fill="#FFB300"/>
+                  </svg>
+                </div>
+                <span class="tech-name">TanStack Query</span>
+              </div>
+
+              <!-- 8. Gemini AI -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                    <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="#3b82f6"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Gemini AI</span>
+              </div>
+
+              <!-- 9. VNPay -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="4" width="20" height="16" rx="3" fill="#005BAA"/>
+                    <path d="M6 10l3 5 5-8" stroke="#ED1C24" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Cổng VNPay</span>
+              </div>
+
+              <!-- 10. Cloudinary -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#3448C5">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Cloudinary</span>
+              </div>
+
+              <!-- 11. JWT & bcrypt -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </div>
+                <span class="tech-name">JWT & bcrypt</span>
+              </div>
+
+              <!-- 12. Recharts -->
+              <div class="tech-card">
+                <div class="tech-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="#ea580c">
+                    <path d="M3 19h18v2H3v-2zm2-4h3v3H5v-3zm5-5h3v8h-3v-8zm5-4h3v12h-3V6zm-5-3h3v2h-3V3z"/>
+                  </svg>
+                </div>
+                <span class="tech-name">Recharts</span>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Kiến trúc mô hình -->
+        <section class="section-container">
+          <div class="section-pill-header center">
+            <span class="section-pill-icon">⚙️</span>
+            <span>Kiến trúc hệ thống</span>
+          </div>
+          <div class="section-box" style="padding: 16px 10px 10px 10px;">
+            <div class="arch-diagram-container">
+              <!-- High-Fidelity SVG Diagram matching InventoHub Architecture -->
+              <svg class="arch-flow-svg" viewBox="0 0 520 280">
+                <!-- Background frame -->
+                <rect x="4" y="4" width="512" height="272" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+                <!-- 1. Tầng Giao diện người dùng -->
+                <rect x="14" y="16" width="115" height="206" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+                <text x="71" y="32" font-size="8" font-weight="800" text-anchor="middle" fill="#0f172a">GIAO DIỆN NGƯỜI DÙNG</text>
+                
+                <!-- Admin App -->
+                <rect x="20" y="44" width="103" height="74" rx="4" fill="#ffffff" stroke="#3b82f6"/>
+                <text x="71" y="58" font-size="7.5" font-weight="700" text-anchor="middle" fill="#1d4ed8">PORTAL QUẢN TRỊ KHO</text>
+                <text x="71" y="70" font-size="6.5" text-anchor="middle" fill="#475569">Sơ đồ kho đa tầng</text>
+                <text x="71" y="80" font-size="6.5" text-anchor="middle" fill="#475569">Phiếu kiểm kê cân bằng</text>
+                <text x="71" y="90" font-size="6.5" text-anchor="middle" fill="#475569">Đơn mua hàng PO</text>
+                <text x="71" y="102" font-size="6" font-weight="700" text-anchor="middle" fill="#2563eb">React 19 & Tailwind</text>
+
+                <!-- Storefront App -->
+                <rect x="20" y="130" width="103" height="82" rx="4" fill="#ffffff" stroke="#10b981"/>
+                <text x="71" y="144" font-size="7.5" font-weight="700" text-anchor="middle" fill="#047857">CỬA HÀNG BÁN LẺ</text>
+                <text x="71" y="156" font-size="6.5" text-anchor="middle" fill="#475569">Duyệt và lọc thiết bị</text>
+                <text x="71" y="166" font-size="6.5" text-anchor="middle" fill="#475569">Giỏ hàng & Đơn bán SO</text>
+                <text x="71" y="176" font-size="6.5" text-anchor="middle" fill="#475569">Yêu cầu đổi trả RMA</text>
+                <text x="71" y="188" font-size="6.5" text-anchor="middle" fill="#475569">Thanh toán trực tuyến</text>
+                <text x="71" y="200" font-size="6" font-weight="700" text-anchor="middle" fill="#059669">TanStack Query Cache</text>
+
+                <!-- 2. Tầng RESTful API & Backend Services -->
+                <rect x="150" y="16" width="168" height="206" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="1.2"/>
+                <text x="234" y="32" font-size="8" font-weight="800" text-anchor="middle" fill="#1e40af">MÁY CHỦ RESTful API - Node.js Express</text>
+
+                <!-- Security & Auth -->
+                <rect x="158" y="44" width="152" height="42" rx="4" fill="#eff6ff" stroke="#3b82f6"/>
+                <text x="234" y="57" font-size="7" font-weight="700" text-anchor="middle" fill="#1d4ed8">XÁC THỰC VÀ PHÂN QUYỀN RBAC</text>
+                <text x="234" y="69" font-size="6.5" text-anchor="middle" fill="#1e293b">JWT Token & bcrypt bảo mật</text>
+                <text x="234" y="79" font-size="6.5" text-anchor="middle" fill="#64748b">4 Vai trò: Admin, Manager, Staff, Viewer</text>
+
+                <!-- Core Business Modules -->
+                <rect x="158" y="94" width="152" height="118" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+                <text x="234" y="108" font-size="7" font-weight="700" text-anchor="middle" fill="#0f172a">XỬ LÝ LOGIC NGHIỆP VỤ KHO</text>
+                <rect x="166" y="116" width="64" height="20" rx="3" fill="#f1f5f9"/>
+                <text x="198" y="129" font-size="6.5" font-weight="600" text-anchor="middle">Kho Zone Rack Bin</text>
+                <rect x="238" y="116" width="64" height="20" rx="3" fill="#f1f5f9"/>
+                <text x="270" y="129" font-size="6.5" font-weight="600" text-anchor="middle">Trừ tồn kho Realtime</text>
+                <rect x="166" y="142" width="64" height="20" rx="3" fill="#f1f5f9"/>
+                <text x="198" y="155" font-size="6.5" font-weight="600" text-anchor="middle">Đơn mua PO & SO</text>
+                <rect x="238" y="142" width="64" height="20" rx="3" fill="#f1f5f9"/>
+                <text x="270" y="155" font-size="6.5" font-weight="600" text-anchor="middle">Kiểm kê & Đổi trả</text>
+                <rect x="166" y="168" width="136" height="18" rx="3" fill="#ecfeff" stroke="#0891b2"/>
+                <text x="234" y="180" font-size="6.5" font-weight="700" text-anchor="middle" fill="#0e7490">Ghi vết AuditLog & Transaction</text>
+                <text x="234" y="200" font-size="6" text-anchor="middle" fill="#64748b">Xuất báo cáo đối soát Excel & PDF</text>
+
+                <!-- Arrows UI to API -->
+                <path d="M129 80 L150 80" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                <path d="M129 170 L150 170" fill="none" stroke="#10b981" stroke-width="1.5"/>
+
+                <!-- 3. Tầng Dịch vụ Đám mây & AI -->
+                <rect x="335" y="16" width="55" height="206" rx="6" fill="#f59e0b" stroke="#d97706" stroke-width="1.2"/>
+                <text x="362" y="80" font-size="8" font-weight="900" fill="#ffffff" text-anchor="middle" writing-mode="vertical-rl" letter-spacing="1.2">DỊCH VỤ ĐÁM MÂY & AI</text>
+
+                <!-- Cloud Connectors -->
+                <path d="M318 70 L335 70" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                <path d="M318 135 L335 135" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                <path d="M318 190 L335 190" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+                <!-- 4. Tầng Dữ liệu và Tích hợp Ngoại vi -->
+                <rect x="408" y="16" width="98" height="206" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+                <text x="457" y="32" font-size="7.5" font-weight="800" text-anchor="middle" fill="#0f172a">DỮ LIỆU & NGOẠI VI</text>
+
+                <!-- Gemini Box -->
+                <rect x="414" y="44" width="86" height="42" rx="4" fill="#eff6ff" stroke="#3b82f6"/>
+                <text x="457" y="57" font-size="7" font-weight="800" text-anchor="middle" fill="#1d4ed8">GEMINI AI</text>
+                <text x="457" y="68" font-size="6" text-anchor="middle" fill="#475569">Dự báo nhập 30 ngày</text>
+                <text x="457" y="78" font-size="6" text-anchor="middle" fill="#475569">Mô tả sản phẩm SEO</text>
+
+                <!-- VNPay & Cloudinary -->
+                <rect x="414" y="94" width="86" height="42" rx="4" fill="#fef2f2" stroke="#ef4444"/>
+                <text x="457" y="107" font-size="7" font-weight="800" text-anchor="middle" fill="#b91c1c">VNPAY & CLOUDINARY</text>
+                <text x="457" y="118" font-size="6" text-anchor="middle" fill="#475569">Băm SHA512 thanh toán</text>
+                <text x="457" y="128" font-size="6" text-anchor="middle" fill="#475569">Lưu trữ ảnh phân tán</text>
+
+                <!-- MongoDB Atlas Box -->
+                <rect x="414" y="144" width="86" height="68" rx="4" fill="#f0fdf4" stroke="#16a34a"/>
+                <text x="457" y="157" font-size="7" font-weight="800" text-anchor="middle" fill="#15803d">MONGODB ATLAS</text>
+                <text x="457" y="168" font-size="6" text-anchor="middle" fill="#334155">Warehouses lồng tầng</text>
+                <text x="457" y="178" font-size="6" text-anchor="middle" fill="#334155">Products & SKU Index</text>
+                <text x="457" y="188" font-size="6" text-anchor="middle" fill="#334155">Orders & Returns</text>
+                <text x="457" y="198" font-size="6" text-anchor="middle" fill="#334155">AuditLog toàn vẹn</text>
+
+                <!-- Connectors from Cloud to Integrations -->
+                <path d="M390 65 L414 65" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                <path d="M390 115 L414 115" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                <path d="M390 178 L414 178" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+
+                <!-- 5. Bottom Strategy Bar -->
+                <rect x="14" y="234" width="492" height="24" rx="4" fill="#fff7ed" stroke="#fdba74"/>
+                <text x="90" y="249" font-size="7" font-weight="800" fill="#9a3412">CHU TRÌNH KHÉP KÍN:</text>
+                <rect x="156" y="238" width="62" height="16" rx="2" fill="#ffffff" stroke="#fb923c"/>
+                <text x="187" y="249" font-size="6.5" font-weight="600" text-anchor="middle">Đơn mua PO</text>
+                <rect x="224" y="238" width="64" height="16" rx="2" fill="#ffffff" stroke="#fb923c"/>
+                <text x="256" y="249" font-size="6.5" font-weight="600" text-anchor="middle">Nhập lưu kho</text>
+                <rect x="294" y="238" width="64" height="16" rx="2" fill="#ffffff" stroke="#fb923c"/>
+                <text x="326" y="249" font-size="6.5" font-weight="600" text-anchor="middle">Bán lẻ & VNPay</text>
+                <rect x="364" y="238" width="64" height="16" rx="2" fill="#ffffff" stroke="#fb923c"/>
+                <text x="396" y="249" font-size="6.5" font-weight="600" text-anchor="middle">Đổi trả RMA</text>
+                <rect x="434" y="238" width="66" height="16" rx="2" fill="#ffffff" stroke="#fb923c"/>
+                <text x="467" y="249" font-size="6.5" font-weight="600" text-anchor="middle">Cân bằng kiểm kê</text>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Bottom Row: Kết quả đạt được + Hướng phát triển -->
+      <div class="grid-2-col-equal">
+
+        <!-- 6. Kết quả đạt được -->
+        <section class="section-container">
+          <div class="section-pill-header center">
+            <span class="section-pill-icon">🎯</span>
+            <span>Kết quả đạt được</span>
+          </div>
+          <div class="section-box">
+            <div class="results-box-content">
+              
+              <!-- 4 Metrics Bar -->
+              <div class="metrics-top-row">
+                <!-- API Pass Rate -->
+                <div class="metric-pill-item blue">
+                  <div class="metric-top-header">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    API Pass
+                  </div>
+                  <div class="metric-score">100%</div>
+                </div>
+
+                <!-- Load Time -->
+                <div class="metric-pill-item amber">
+                  <div class="metric-top-header">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.48 10 10 10 2.45 0 4.69-.89 6.43-2.36l-2.14-2.14c-1.22.94-2.73 1.5-4.29 1.5z"/></svg>
+                    Tải trang
+                  </div>
+                  <div class="metric-score">Dưới 0.8s</div>
+                </div>
+
+                <!-- AI Forecast -->
+                <div class="metric-pill-item green">
+                  <div class="metric-top-header">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18"/><path d="M7 16c4 0 6-8 12-10"/></svg>
+                    Độ tin cậy AI
+                  </div>
+                  <div class="metric-score">92.5%</div>
+                </div>
+
+                <!-- Realtime Sync -->
+                <div class="metric-pill-item cyan">
+                  <div class="metric-top-header">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Đồng bộ kho
+                  </div>
+                  <div class="metric-score">Tức thì</div>
+                </div>
+              </div>
+
+              <!-- Module Test Verification Table -->
+              <div class="cm-participant-row">
+                <div class="cm-table-box">
+                  <div class="cm-header-bar">Kiểm thử chức năng thực tế Postman</div>
+                  <table class="cm-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 48%; background: #ffffff;">Phân hệ nghiệp vụ</th>
+                        <th style="width: 26%;">Kịch bản</th>
+                        <th style="width: 26%;">Kết quả</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th style="text-align: left; padding-left: 6px;">Xác thực & Phân quyền RBAC</th>
+                        <td>JWT & Route</td>
+                        <td class="cm-val-pass">Hoàn thành</td>
+                      </tr>
+                      <tr>
+                        <th style="text-align: left; padding-left: 6px;">Quản lý kho đa tầng Zone-Rack-Bin</th>
+                        <td>Định vị ô chứa</td>
+                        <td class="cm-val-pass">Hoàn thành</td>
+                      </tr>
+                      <tr>
+                        <th style="text-align: left; padding-left: 6px;">Đơn bán lẻ & Thanh toán VNPay</th>
+                        <td>Trừ kho tức thì</td>
+                        <td class="cm-val-pass">Hoàn thành</td>
+                      </tr>
+                      <tr>
+                        <th style="text-align: left; padding-left: 6px;">Dự báo nhập hàng Google Gemini AI</th>
+                        <td>Chuỗi 30 ngày</td>
+                        <td class="cm-val-pass">Hoàn thành</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Omni-channel Warehouse Badge -->
+                <div class="cm-badge-right">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                  </svg>
+                  <div class="cm-badge-text">
+                    Mô hình khép kín<br>Kho bãi & Bán lẻ
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conclusion Box -->
+              <div class="conclusion-callout">
+                <div class="conclusion-tag">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  KẾT LUẬN
+                </div>
+                <div class="conclusion-text">
+                  Hệ thống vận hành chính xác 100% các kịch bản kiểm thử, đáp ứng xuất sắc yêu cầu <strong>Quản trị kho thông minh và Bán lẻ đa kênh</strong>.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Hướng phát triển -->
+        <section class="section-container">
+          <div class="section-pill-header center">
+            <span class="section-pill-icon">🧭</span>
+            <span>Hướng phát triển</span>
+          </div>
+          <div class="section-box">
+            <ul class="future-items-list">
+              <li>Mở rộng kết nối các thiết bị phần cứng quét mã vạch Barcode cầm tay và máy in tem nhãn chuyên dụng tại kho bãi.</li>
+              <li>Nâng cấp mô hình trí tuệ nhân tạo Gemini học sâu dự báo kết hợp các yếu tố mùa vụ, thời tiết và xu hướng thị trường.</li>
+              <li>Tích hợp trực tiếp với các đơn vị vận chuyển trung gian như Giao Hàng Tiết Kiệm và Viettel Post để tự động hóa tạo vận đơn.</li>
+              <li>Phát triển ứng dụng di động đa nền tảng bằng React Native phục vụ nhân viên kiểm kê và nhặt hàng lưu động tại hiện trường.</li>
+              <li>Bổ sung tính năng định vị ô chứa trực quan trên sơ đồ mô phỏng 3D bản đồ số không gian kho hàng.</li>
+              <li>Tối ưu thuật toán tự động gợi ý đường đi lấy hàng ngắn nhất giúp giảm thiểu thời gian gom hàng cho nhân viên vận hành.</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

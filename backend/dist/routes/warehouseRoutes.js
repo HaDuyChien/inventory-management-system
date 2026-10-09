@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const warehouseController_1 = require("../controllers/warehouseController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get("/", warehouseController_1.getWarehouses);
+router.get("/:id", warehouseController_1.getWarehouseById);
+router.post("/relocate", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER", "WAREHOUSE_STAFF"), warehouseController_1.relocateStock);
+router.post("/:id/zones", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.addZone);
+router.post("/:id/racks", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.addRack);
+router.post("/:id/bins", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.addBin);
+router.put("/:id/bins", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.updateBin);
+router.post("/", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.createWarehouse);
+router.put("/:id", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN", "WAREHOUSE_MANAGER"), warehouseController_1.updateWarehouse);
+router.delete("/:id", auth_1.protectAdmin, (0, auth_1.restrictTo)("ADMIN"), warehouseController_1.deleteWarehouse);
+exports.default = router;
